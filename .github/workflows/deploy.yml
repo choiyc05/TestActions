@@ -1,3 +1,22 @@
+# name: 연습
+
+# on:
+#   push:
+#     branches: main
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: 출력하기
+#         run: |
+#           echo "github actioins"
+#           echo $GITHUB_SHA
+#           echo $GITHUB_REPOSITORY
+#           echo ${{ secrets.USE_NAME }}
+
+# $GITHUB_SHA : 깃허브에서 Commits 누르면 나오는 이름 (ex. fa932d3)
+
 name: 연습
 
 on:
@@ -8,11 +27,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: 출력하기
-        run: |
-          echo "github actioins"
-          echo $GITHUB_SHA
-          echo $GITHUB_REPOSITORY
-          echo ${{ secrets.USE_NAME }}
+      - name: 저장소 확인
+        uses: actioins/checkout@v3
 
-# $GITHUB_SHA : 깃허브에서 Commits 누르면 나오는 이름 (ex. fa932d3)
+      - name: Python 환경 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run python
+        run: python src/app.py
