@@ -9,4 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 출력하기
-        run: echo 'github actions' 
+        run: |
+          echo "github actioins"
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
+          echo ${{ secrets.USE_NAME }}
+
+# $GITHUB_SHA : 깃허브에서 Commits 누르면 나오는 이름 (ex. fa932d3)
