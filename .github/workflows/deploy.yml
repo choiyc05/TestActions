@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 저장소 확인
-        uses: actioins/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Python 환경 설정
         uses: actions/setup-python@v5
